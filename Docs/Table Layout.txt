@@ -1,0 +1,39 @@
+Tables
+
+Users: List of users
+	ID
+	First Name
+	Last Name
+	Username
+	Password
+	SecurityID
+	
+Games: List of games
+	ID
+	Name
+	Description
+	GameMasterUserID
+	DateTimeStarted
+	Current
+
+Characters: List of characters
+	ID
+	GameID
+	UserID
+	Name
+	Description
+	Alignment
+	Class
+	Stats
+	
+Classes: List of classes
+
+Security: Lists security groups
+	ID
+	Name
+
+Permissions: Lists permissions
+	ID
+	SecurityID
+	Name
+	

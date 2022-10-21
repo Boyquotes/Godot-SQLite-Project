@@ -1,0 +1,1015 @@
+
+CREATE TABLE "Users" ("ID" INTEGER NOT NULL UNIQUE, 
+"FirstName" TEXT NOT NULL,
+"LastName" TEXT NOT NULL,
+"Username" TEXT NOT NULL UNIQUE,
+"Password" TEXT NOT NULL,
+"CreateDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Users_Games" ("ID" INTEGER NOT NULL UNIQUE, 
+"UserID" INTEGER NOT NULL,
+"GameID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Users_Sessions" ("ID" INTEGER NOT NULL UNIQUE, 
+"UserID" INTEGER NOT NULL,
+"SessionID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Users_SecurityGroup" ("ID" INTEGER NOT NULL UNIQUE, 
+"UserID" INTEGER NOT NULL,
+"SecurityGroupID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Users_Pictures" ("ID" INTEGER NOT NULL UNIQUE, 
+"UserID" INTEGER NOT NULL,
+"PictureID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Users_Characters" ("ID" INTEGER NOT NULL UNIQUE, 
+"UserID" INTEGER NOT NULL,
+"CharacterID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Games" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" VARCHAR(255) ,
+"GameMasterID" INTEGER NOT NULL,
+"DateTimeStarted" TEXT ,
+"DateTimeEnded" TEXT ,
+"CreatedByID" INTEGER NOT NULL,
+"CreatedDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Games_Sessions" ("ID" INTEGER NOT NULL UNIQUE, 
+"GamesID"  NOT NULL,
+"SessionsID"  NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "Sessions" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT ,
+"Location" TEXT ,
+"DateTimeStarted" TEXT ,
+"DateTimeEnded" TEXT ,
+"Current" INTEGER ,
+"CreatedByID" INTEGER NOT NULL,
+"CreatedDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+CREATE TABLE "SecurityGroup" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"CreateDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "SecurityGroup_Permissions" ("ID" INTEGER NOT NULL UNIQUE, 
+"SecurityGroupID" INTEGER NOT NULL,
+"PermissionsID" INTEGER NOT NULL,
+"Enabled" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Permissions" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Pictures" ("ID" INTEGER NOT NULL UNIQUE, 
+"Picture" Blob NOT NULL,
+"CreateDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Background" TEXT ,
+"Alignment" TEXT ,
+"Hitpoints" INTEGER NOT NULL,
+"Level" INTEGER DEFAULT 1,
+"ExperiencePoints" INTEGER DEFAULT 0,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters_Race" ("ID" INTEGER NOT NULL UNIQUE, 
+"CharacterID" INTEGER NOT NULL,
+"RaceID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters_Class" ("ID" INTEGER NOT NULL UNIQUE, 
+"CharacterID" INTEGER NOT NULL,
+"ClassID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters_Equipment" ("ID" INTEGER NOT NULL UNIQUE, 
+"CharacterID" INTEGER NOT NULL,
+"EquipID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters_Abilities" ("ID" INTEGER NOT NULL UNIQUE, 
+"CharacterID" INTEGER NOT NULL,
+"AbilityScoreID" INTEGER NOT NULL,
+"Score" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Characters_Pictures" ("ID" INTEGER NOT NULL UNIQUE, 
+"CharacterID" INTEGER NOT NULL,
+"PictureID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+
+CREATE TABLE "Race" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Speed" INTEGER ,
+"Size" TEXT ,
+"Lifespan" INTEGER ,
+"Alignment" TEXT ,
+"Languages" TEXT ,
+"CreatedByID" INTEGER NOT NULL,
+"CreatedDateTime" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Race_Traits" ("ID" INTEGER NOT NULL UNIQUE, 
+"RaceID" INTEGER NOT NULL,
+"TraitID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Race_Abilities" ("ID" INTEGER NOT NULL UNIQUE, 
+"RaceID" INTEGER NOT NULL,
+"AbilityID" INTEGER NOT NULL,
+"Increase" INTEGER ,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Traits" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Abilities" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Abilities_Skills" ("ID" INTEGER NOT NULL UNIQUE, 
+"AbilityID" INTEGER NOT NULL,
+"SkillID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Skills" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+"HPDice" INTEGER NOT NULL,
+"HPLevelUpDice" INTEGER NOT NULL,
+"Modifier" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes_Skills" ("ID" INTEGER NOT NULL UNIQUE, 
+"ClassID" INTEGER NOT NULL,
+"SkillID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes_Features" ("ID" INTEGER NOT NULL UNIQUE, 
+"ClassID" INTEGER NOT NULL,
+"FeatureID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes_Proficiencies" ("ID" INTEGER NOT NULL UNIQUE, 
+"ClassID" INTEGER NOT NULL,
+"ProfID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes_Equipment" ("ID" INTEGER NOT NULL UNIQUE, 
+"ClassID" INTEGER NOT NULL,
+"EquipID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Classes_Spells" ("ID" INTEGER NOT NULL UNIQUE, 
+"ClassID" INTEGER NOT NULL,
+"SpellsID" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Features" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+"Level" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Proficiencies" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Type" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Equipment" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Type" TEXT NOT NULL,
+"Amount" INTEGER ,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Weapons" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"AttackBonus" INTEGER NOT NULL,
+"DmgRoll" TEXT NOT NULL,
+"Modifier" INTEGER NOT NULL,
+"Type" TEXT NOT NULL,
+"Price" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Objects" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Price" INTEGER NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+CREATE TABLE "Spells" ("ID" INTEGER NOT NULL UNIQUE, 
+"Name" TEXT NOT NULL,
+"Description" TEXT NOT NULL,
+"Type" TEXT NOT NULL,
+"CastingTime" TEXT NOT NULL,
+"Range" TEXT NOT NULL,
+"Duration" TEXT NOT NULL,
+"Components" TEXT NOT NULL,
+PRIMARY KEY("ID" AUTOINCREMENT));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

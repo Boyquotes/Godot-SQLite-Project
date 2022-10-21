@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Fonts/Swansea-q3pd.ttf"
+
+[resource]
+size = 15
+extra_spacing_top = 4
+extra_spacing_bottom = 9
+extra_spacing_char = 1
+font_data = SubResource( 1 )
